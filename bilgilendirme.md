@@ -1,0 +1,1 @@
+Bu kodlar alıntı, Büyük çoğunlukla internetten baka baka yazdım.
