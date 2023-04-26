@@ -7,35 +7,35 @@ const Punctuation = new RegExp(/^[!"#%&'*,./?@^_|~-]+$/);
 
 class db {
     /**
-     * Veritabanını oluşturmak için kullanılan ayarlar nesnesi
+     * The settings object used to create the database
      * @typedef {Object} Settings
-     * @property {string} path Veritabanının yolu
-     * @property {number} spaces Veritabanı dosyasının boşlukları
-     * @property {string} seperator Kimlikler için ayırıcı
+     * @property {string} path The path of the database
+     * @property {number} spaces The spaces of the database file
+     * @property {string} seperator Seperator for the ID's
      */
     /**
-     * Bir veritabanı dosyası oluşturun veya alın
-     * @param {Settings} settings Ayarların nesnesi
-     * @throws {DatabaseError} Hiçbir ayar yoksa veya herhangi bir ayar geçersizse
+     * Create or get a database file
+     * @param {Settings} settings Object of the settings
+     * @throws {DatabaseError} If there are no settings or any settings are invalid
      */
      constructor(settings = {}) {
-        // Ayarlar
+        //Settings
         if (!settings)
             throw new DatabaseError("Ayarlar gerekli");
         if (typeof settings !== "object")
             throw new DatabaseError("Ayarlar bir nesne olmalıdır");
-        // Yol
+        // Path
         if (!settings.path)
             throw new DatabaseError("Yol gerekli");
         if (typeof settings.path !== "string")
             throw new DatabaseError("Yol bir dize olmalıdır");
         if (!settings.path.endsWith(".json"))
             throw new DatabaseError("Bu yol bir json dosyasına çıktı vermez");
-        // boşluklar
+        // Spaces
         if (settings.spaces && typeof settings.spaces !== "number")
             throw new DatabaseError("Veritabanı dosyasının boşlukları bir sayı olmalıdır")
         else if (!settings.spaces) settings.spaces = 0;
-        // ayırıcı
+        // Seperator
         if (!settings.seperator)
             throw new DatabaseError("ayırıcı gereklidir");
         if (typeof settings.seperator !== "string")
@@ -45,7 +45,7 @@ class db {
         if (settings.seperator.length != 1)
             throw new DatabaseError("Ayırıcı uzunluğu 1 olmalıdır");
         /**
-         * Veritabanı ayarları
+         * The settings of the database
          * @type {PrivateSettings}
          * @private
          */
@@ -56,7 +56,7 @@ class db {
         });
     
         /**
-         * Metodlar
+         * The methods
          * @type {Methods}
          * @private
          */
@@ -132,6 +132,9 @@ class db {
      */
     push(id, value) {
         return this.methods.push(id, value);
+    };
+    splice(id, value) {
+        return this.methods.splice(id, value);
     };
     /**
      * Sets the value of an element in the database
