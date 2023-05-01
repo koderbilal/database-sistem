@@ -1,5 +1,7 @@
 # database-sistem
 
+** bu sürümde has fonksiyonu geçici olarak hatalı sonuç vermektedir, ileriki sürümlerde düzeltilecektir.
+
 jsonlu database sistemi
 
 aşağıdaki kod sayesinde dosyayı oluşturabiliyorsunuz.
@@ -130,8 +132,22 @@ sonuç
 
 ### dizide belirli bir eleman varmı diye bakmak
 
+// geçici olarak has fonksiyonu kaldırıldı
+
 ```js
 console.log(db.has("a","a"))
+```
+
+sonuç
+
+```console
+true
+```
+
+// yeni gelen includes fonksiyonu
+
+```js
+console.log(db.includes("a","a"))
 ```
 
 sonuç
@@ -162,6 +178,18 @@ sonuç
 
 ```console
 ["a","c"]
+```
+
+### dizide kaç eleman var diye bakmak
+
+```js
+console.log(db.size("a"))
+```
+
+sonuç
+
+```console
+1
 ```
 
 ## diğer özellikler ve ek database bilgileri
@@ -294,6 +322,13 @@ Not: Bu özellikler dahalen geliştirme aşamasındadır. lütfen daha iyi özel
 [Discord sunucusu](https://discord.gg/YdVyqDscbb)
 
 ## güncelleme notları
+
+### 1.0.3
+
+- has fonksiyonu geçici olarak kaldırıldı, lütfen alternatifini kullanın.
+- includes fonksiyonu eklendi.
+- bir web sayfası üzerinde çalışmalar yapılıyor.
+- size fonksiyonu eklendi.
 
 ### 1.0.2
 

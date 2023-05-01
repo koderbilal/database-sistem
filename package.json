@@ -1,6 +1,6 @@
 {
   "name": "database-sistem",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "jsonlu database sistemi",
   "main": "app.js",
   "scripts": {
@@ -24,5 +24,6 @@
   },
   "directories": {
     "lib": "lib"
-  }
+  },
+  "devDependencies": {}
 }

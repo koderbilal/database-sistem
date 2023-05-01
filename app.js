@@ -136,6 +136,12 @@ class db {
     splice(id, value) {
         return this.methods.splice(id, value);
     };
+    includes(id, value) {
+        return this.methods.includes(id, value);
+    };
+    size(id) {
+        return this.methods.size(id);
+    };
     /**
      * Sets the value of an element in the database
      * @param {string} id The ID of the element
