@@ -4,9 +4,22 @@ const db = new Db({
     seperator: ".",
     spaces: 10
   });
-db.set("aa.aa","a")
-db.set("ab.ac","a")
-db.add("ab.ae",3)
-db.push("ab.ad","b")
-console.log(db.size("ab.ad"))
-console.log(db.includes("ab.ad","b"))
+const veri = {
+  username:"bob",
+  email:"bob@example.com",
+}
+db.push("users",veri);
+const veri2 = {
+  username:"bila",
+  email:"bila@example.com",
+}
+db.push("users",veri2);
+
+const userToUpdate = db.find("users", user => user.username === "bob");
+console.log(userToUpdate)
+if (userToUpdate) {
+  const updatedUser = db.update("users", user => user.username === "bob", { email: "bobmarley@example.com", other: "deneme" });
+  console.log(updatedUser); // Güncellenmiş kullanıcı bilgisi
+} else {
+  console.log("Kullanıcı bulunamadı.");
+}

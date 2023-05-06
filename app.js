@@ -120,8 +120,8 @@ class db {
      * @returns {boolean} Indicates presence
      * @throws {DatabaseError} If the ID is invalid
      */
-    has(id) {
-        return this.methods.has(id);
+    has(id, value) {
+        return this.methods.has(id, value);
     };
     /**
      * Pushs the data in a array from database
@@ -133,12 +133,21 @@ class db {
     push(id, value) {
         return this.methods.push(id, value);
     };
+    pull(id, value) {
+        return this.methods.pull(id, value);
+    };
     splice(id, value) {
         return this.methods.splice(id, value);
     };
     includes(id, value) {
         return this.methods.includes(id, value);
     };
+    find(id, condition) {
+        return this.methods.find(id, condition);
+    }
+    update(id, predicate, updateData) {
+        return this.methods.update(id, predicate, updateData);
+    }
     size(id) {
         return this.methods.size(id);
     };

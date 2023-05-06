@@ -1,12 +1,13 @@
 {
-          "aa": {
-                    "aa": "a"
-          },
-          "ab": {
-                    "ac": "a",
-                    "ae": 3,
-                    "ad": [
-                              "b"
-                    ]
-          }
+          "users": [
+                    {
+                              "username": "bob",
+                              "email": "bobmarley@example.com",
+                              "other": "deneme"
+                    },
+                    {
+                              "username": "bila",
+                              "email": "bila@example.com"
+                    }
+          ]
 }

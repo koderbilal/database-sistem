@@ -1,7 +1,5 @@
 # database-sistem
 
-** bu sürümde has fonksiyonu geçici olarak hatalı sonuç vermektedir, ileriki sürümlerde düzeltilecektir.
-
 jsonlu database sistemi
 
 aşağıdaki kod sayesinde dosyayı oluşturabiliyorsunuz.
@@ -118,6 +116,16 @@ sonuç
 
 ### diziden belirli bir elemanı çıkarmak
 
+aşağıdaki fonksiyonlardan önceki array
+
+```json
+{
+  "a": ["a","b","c"]
+}
+```
+
+// splice fonksiyonu
+
 ```js
 db.splice("a","b")
 ```
@@ -130,9 +138,21 @@ sonuç
 }
 ```
 
-### dizide belirli bir eleman varmı diye bakmak
+// pull fonksiyonu
 
-// geçici olarak has fonksiyonu kaldırıldı
+```js
+db.pull("a","b")
+```
+
+sonuç
+
+```json
+{
+  "a": ["a","c"]
+}
+```
+
+### dizide belirli bir eleman varmı diye bakmak
 
 ```js
 console.log(db.has("a","a"))
@@ -190,6 +210,110 @@ sonuç
 
 ```console
 1
+```
+
+## geliştirilmiş dizi özelliği
+
+### find fonksiyonu
+
+```js
+const Db = require("./app.js");
+const db = new Db({
+    path: `./database.json`,
+    seperator: ".",
+    spaces: 10
+  });
+const veri = {
+  username:"bob",
+  email:"bob@example.com",
+}
+db.push("users",veri);
+const veri2 = {
+  username:"bila",
+  email:"bila@example.com",
+}
+db.push("users",veri2);
+
+const userToUpdate = db.find("users", user => user.username === "bob");
+console.log(userToUpdate)
+```
+
+sonuç
+
+```console
+{ username: 'bob', email: 'bob@example.com' }
+```
+
+databasedeki hali ise aşağıdaki şekildedir
+
+```json
+{
+          "users": [
+                    {
+                              "username": "bob",
+                              "email": "bob@example.com"
+                    },
+                    {
+                              "username": "bila",
+                              "email": "bila@example.com"
+                    }
+          ]
+}
+```
+
+### update fonksiyonu
+
+```js
+const Db = require("./app.js");
+const db = new Db({
+    path: `./database.json`,
+    seperator: ".",
+    spaces: 10
+  });
+const veri = {
+  username:"bob",
+  email:"bob@example.com",
+}
+db.push("users",veri);
+const veri2 = {
+  username:"bila",
+  email:"bila@example.com",
+}
+db.push("users",veri2);
+
+const userToUpdate = db.find("users", user => user.username === "bob");
+console.log(userToUpdate)
+if (userToUpdate) {
+  const updatedUser = db.update("users", user => user.username === "bob", { email: "bobmarley@example.com", other: "deneme" });
+  console.log(updatedUser); // Güncellenmiş kullanıcı bilgisi
+} else {
+  console.log("Kullanıcı bulunamadı.");
+}
+```
+
+sonuç
+
+```console
+{ username: 'bob', email: 'bob@example.com' }
+{ username: 'bob', email: 'bobmarley@example.com', other: 'deneme' }
+```
+
+databasedeki hali ise aşağıdaki şekildedir
+
+```json
+{
+          "users": [
+                    {
+                              "username": "bob",
+                              "email": "bobmarley@example.com",
+                              "other": "deneme"
+                    },
+                    {
+                              "username": "bila",
+                              "email": "bila@example.com"
+                    }
+          ]
+}
 ```
 
 ## diğer özellikler ve ek database bilgileri
@@ -322,6 +446,13 @@ Not: Bu özellikler dahalen geliştirme aşamasındadır. lütfen daha iyi özel
 [Discord sunucusu](https://discord.gg/YdVyqDscbb)
 
 ## güncelleme notları
+
+### 1.0.4 & 1.0.5
+
+- has fonksiyonu düzeltildi.
+- pull fonksiyonu eklendi.
+- find fonksiyonu eklendi.
+- update fonksiyonu eklendi.
 
 ### 1.0.3
 
